@@ -2,6 +2,26 @@
 
 `run-container.sh` builds and runs a local container image from the repository root.
 
+## Download
+
+```bash
+curl -L -o run-container.sh https://raw.githubusercontent.com/aheimsbakk/run-container.sh/main/run-container.sh
+chmod +x run-container.sh
+```
+
+Or with `wget`:
+
+```bash
+wget -O run-container.sh https://raw.githubusercontent.com/aheimsbakk/run-container.sh/main/run-container.sh
+chmod +x run-container.sh
+```
+
+To update an existing installation:
+
+```bash
+./run-container.sh --update
+```
+
 ## Requirements
 
 - `podman` or `docker` installed

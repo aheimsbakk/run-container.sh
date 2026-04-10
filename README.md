@@ -1,6 +1,6 @@
-# build-container.sh
+# run-container.sh
 
-`build-container.sh` builds and runs a local container image from the repository root.
+`run-container.sh` builds and runs a local container image from the repository root.
 
 ## Requirements
 
@@ -18,7 +18,7 @@
 ## Usage
 
 ```bash
-./build-container.sh [SCRIPT_OPTIONS] [RUNTIME_OPTIONS] [-- COMMAND_OPTIONS]
+./run-container.sh [SCRIPT_OPTIONS] [RUNTIME_OPTIONS] [-- COMMAND_OPTIONS]
 ```
 
 Options before `--` are passed to `podman run` or `docker run`.
@@ -38,23 +38,23 @@ Options after `--` are passed to the container command.
 Build if needed, then run:
 
 ```bash
-./build-container.sh
+./run-container.sh
 ```
 
 Force a rebuild:
 
 ```bash
-./build-container.sh --force
+./run-container.sh --force
 ```
 
 Pass runtime and command arguments separately:
 
 ```bash
-./build-container.sh --rm -ti -v ./:/mnt -- sphinx-build -b html source public
+./run-container.sh --rm -ti -v ./:/mnt -- sphinx-build -b html source public
 ```
 
 Use a custom image name:
 
 ```bash
-./build-container.sh --name docs-builder
+./run-container.sh --name docs-builder
 ```

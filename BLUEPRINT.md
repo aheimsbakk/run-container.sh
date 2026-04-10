@@ -2,8 +2,8 @@
 
 ## Script
 
-- Path: `build-container.sh`
-- Purpose: build a local container image from the script directory and run it with a small wrapper around `podman` / `docker`
+- Path: `run-container.sh`
+- Purpose: build a local container image from the script directory when needed and run it with a small wrapper around `podman` / `docker`
 
 ## Inputs
 

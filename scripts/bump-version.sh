@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Bump VERSION inside build-container.sh
+# Bump VERSION inside run-container.sh
 # Usage: scripts/bump-version.sh [patch|minor|major]
 
 if [[ $# -ne 1 ]]; then
@@ -10,7 +10,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 PART=$1
-TARGET=build-container.sh
+TARGET=run-container.sh
 
 if [[ ! -f "$TARGET" ]]; then
 	echo "Error: $TARGET not found" >&2

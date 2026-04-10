@@ -30,6 +30,8 @@ Options after `--` are passed to the container command.
 - `--no-cache`: rebuild without build cache; implies `--force`
 - `--docker`: use `docker` even when `podman` is available
 - `-n`, `--name NAME`: override the image name
+- `--update`: self-update the script from the [source repository](https://github.com/aheimsbakk/run-container.sh.git) and exit
+- `--license`: show license information and exit
 - `-h`, `--help`: show help
 - `-V`, `--version`: show script version
 

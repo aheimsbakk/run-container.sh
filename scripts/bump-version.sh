@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Simple version bump script for this repo
+# Bump VERSION inside build-container.sh
 # Usage: scripts/bump-version.sh [patch|minor|major]
 
 if [[ $# -ne 1 ]]; then
@@ -10,17 +10,18 @@ if [[ $# -ne 1 ]]; then
 fi
 
 PART=$1
-FILE=opencode.json
+TARGET=build-container.sh
 
-if [[ ! -f "$FILE" ]]; then
-	echo "Error: $FILE not found" >&2
+if [[ ! -f "$TARGET" ]]; then
+	echo "Error: $TARGET not found" >&2
 	exit 1
 fi
 
-CURRENT=$(jq -r '.version' "$FILE")
-if [[ "$CURRENT" == null ]]; then
-	echo "Error: version key missing in $FILE" >&2
-	exit 1
+# Extract current VERSION from the file (expects VERSION="x.y.z" at top-level)
+CURRENT=$(grep -m1 '^VERSION="' "$TARGET" | sed -E 's/^VERSION="([0-9]+\.[0-9]+\.[0-9]+)"/\1/' || true)
+if [[ -z "$CURRENT" ]]; then
+	echo "Error: could not find VERSION in $TARGET" >&2
+	exit 2
 fi
 
 IFS='.' read -r MAJ MIN PAT <<<"$CURRENT"
@@ -44,6 +45,8 @@ major)
 esac
 
 NEW_VERSION="${MAJ}.${MIN}.${PAT}"
-tmp=$(mktemp)
-jq ".version = \"${NEW_VERSION}\"" "$FILE" >"$tmp" && mv "$tmp" "$FILE"
+
+# Replace the VERSION line in-place
+sed -E -i.bak "s/^VERSION=\"[0-9]+\.[0-9]+\.[0-9]+\"/VERSION=\"${NEW_VERSION}\"/" "$TARGET"
+rm -f "${TARGET}.bak"
 echo "$NEW_VERSION"

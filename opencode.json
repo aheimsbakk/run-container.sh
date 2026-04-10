@@ -4,6 +4,5 @@
   "instructions": [
     ".opencode/RULES.md"
   ],
-  "version": "0.0.1",
   "small_model": "github-copilot/gpt-5-mini"
 }
